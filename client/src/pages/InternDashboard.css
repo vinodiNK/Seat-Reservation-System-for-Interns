@@ -1,0 +1,48 @@
+.intern-dashboard {
+    text-align: center;
+    padding: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f9f9;
+    height: 100vh;
+}
+
+.intern-dashboard h1 {
+    font-size: 2.5rem;
+    color: #006699;
+}
+
+.intern-dashboard p {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.intern-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.intern-actions button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #0099cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    min-width: 180px;
+}
+
+.intern-actions button:hover {
+    background-color: #0077aa;
+}
+
+.logout-button {
+    background-color: #cc0000;
+}
+
+.logout-button:hover {
+    background-color: #990000;
+}

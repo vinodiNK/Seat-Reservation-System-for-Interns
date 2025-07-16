@@ -1,45 +1,47 @@
 const express = require('express');
-const router = express.Router();
-const db = require('../db');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const db = require('./db');
 
-// Get all seats
-router.get('/', (req, res) => {
-  const sql = 'SELECT * FROM seats';
-  db.query(sql, (err, results) => {
-    if (err) return res.status(500).json({ message: 'Error fetching seats' });
-    res.json(results);
-  });
+dotenv.config();
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Test DB connection
+db.connect((err) => {
+  if (err) {
+    console.error('❌ MySQL connection failed:', err);
+  } else {
+    console.log('✅ MySQL connected!');
+  }
 });
 
-// Add new seat
-router.post('/', (req, res) => {
-  const { seat_number, location } = req.body;
-  const sql = 'INSERT INTO seats (seat_number, location) VALUES (?, ?)';
-  db.query(sql, [seat_number, location], (err, result) => {
-    if (err) return res.status(500).json({ message: 'Failed to add seat' });
-    res.json({ message: 'Seat added successfully' });
-  });
+// Import Routes
+const authRoutes = require('./routes/auth');
+const seatRoutes = require('./routes/seats');
+const reservationRoutes = require('./routes/reservations');
+
+// Use Routes
+app.use('/api/auth', authRoutes);              // Login/Register
+app.use('/api/seats', seatRoutes);             // Seat management + availability
+app.use('/api/reservations', reservationRoutes); // Reservations
+
+// Default route
+app.get('/', (req, res) => {
+  res.send('🎉 Seat Reservation System API is running.');
 });
 
-// Update seat
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
-  const { seat_number, location } = req.body;
-  const sql = 'UPDATE seats SET seat_number = ?, location = ? WHERE id = ?';
-  db.query(sql, [seat_number, location, id], (err, result) => {
-    if (err) return res.status(500).json({ message: 'Failed to update seat' });
-    res.json({ message: 'Seat updated successfully' });
-  });
+// 404 fallback
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
 });
 
-// Delete seat
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  const sql = 'DELETE FROM seats WHERE id = ?';
-  db.query(sql, [id], (err, result) => {
-    if (err) return res.status(500).json({ message: 'Failed to delete seat' });
-    res.json({ message: 'Seat deleted successfully' });
-  });
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-
-module.exports = router;

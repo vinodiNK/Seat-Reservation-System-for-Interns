@@ -1,17 +1,18 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+// Pages
 import AdminDashboard from './pages/AdminDashboard';
 import InternDashboard from './pages/InternDashboard';
 import LoginPage from './pages/LoginPage';
-import ManageSeats from './pages/ManageSeats'; // Admin: Add/Edit/Delete seats
+import ManageSeats from './pages/ManageSeats';
 import RegisterPage from './pages/RegisterPage';
-import ViewSeats from './pages/ViewSeats'; // Intern: View seats by date
+import ViewSeats from './pages/ViewSeats';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Routes */}
+        {/* Default route = Login */}
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 

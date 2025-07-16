@@ -1,0 +1,90 @@
+.manage-seats-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fefefe;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.manage-seats-container h2,
+.manage-seats-container h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.manage-seats-container form,
+.date-assign-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.manage-seats-container input,
+.manage-seats-container select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.manage-seats-container button {
+    padding: 10px 16px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.manage-seats-container button:hover {
+    background-color: #004c99;
+}
+
+.manage-seats-container table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.manage-seats-container th,
+.manage-seats-container td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.manage-seats-container th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.manage-seats-container .action-buttons button {
+    margin: 0 4px;
+    background-color: #28a745;
+}
+
+.manage-seats-container .action-buttons button:nth-child(2) {
+    background-color: #dc3545;
+}
+
+.manage-seats-container .action-buttons button:nth-child(3) {
+    background-color: #6c757d;
+}
+
+@media (max-width: 600px) {
+    .manage-seats-container input,
+    .manage-seats-container select {
+        width: 100%;
+    }
+    .manage-seats-container form {
+        flex-direction: column;
+        align-items: center;
+    }
+}
